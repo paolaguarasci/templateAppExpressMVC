@@ -10,7 +10,9 @@
     "transpile": "babel ./src --out-dir dist"
   },
   "babel": {
-    "presets": ["@babel/preset-env"]
+    "presets": [
+      "@babel/preset-env"
+    ]
   },
   "dependencies": {
     "@babel/cli": "^7.19.3",
@@ -23,6 +25,7 @@
     "helmet": "^6.0.0",
     "http-errors": "~2.0.0",
     "morgan": "~1.10.0",
+    "rate-limiter-flexible": "^2.3.12",
     "rimraf": "^3.0.2",
     "twig": "~1.15.4"
   },
