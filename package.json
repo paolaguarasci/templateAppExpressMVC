@@ -1,0 +1,36 @@
+{
+  "name": "templateappexpressmvc",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start:dev": "nodemon -r dotenv/config src/app.js",
+    "start:prod": "node -r dotenv/config src/app.js",
+    "test": "nodemon ./bin/www",
+    "transpile": "babel ./src --out-dir dist"
+  },
+  "babel": {
+    "presets": ["@babel/preset-env"]
+  },
+  "dependencies": {
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.19.3",
+    "@babel/preset-env": "^7.19.4",
+    "cookie-parser": "~1.4.6",
+    "debug": "~4.3.4",
+    "dotenv": "^16.0.3",
+    "express": "^5.0.0-beta.1",
+    "helmet": "^6.0.0",
+    "http-errors": "~2.0.0",
+    "morgan": "~1.10.0",
+    "rimraf": "^3.0.2",
+    "twig": "~1.15.4"
+  },
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "chai-http": "^4.3.0",
+    "mocha": "^10.1.0",
+    "nodemon": "^2.0.20",
+    "sinon": "^14.0.1"
+  }
+}
