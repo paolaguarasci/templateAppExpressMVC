@@ -1,3 +1,4 @@
+import { RateLimiterMemory } from 'rate-limiter-flexible';
 import cookieParser from 'cookie-parser';
 import debugLib from 'debug';
 import express from 'express';
@@ -6,7 +7,13 @@ import http from 'http';
 import indexRouter from './routes/index.js';
 import logger from 'morgan';
 import path from 'path';
-import usersRouter from './routes/users.js';
+
+const rateLimiteOptions = {
+  points: 1000, // 6 points
+  duration: 1 // Per second
+};
+
+const rateLimiter = new RateLimiterMemory(rateLimiteOptions);
 
 const app = express();
 const debug = debugLib('templateappexrepssmvc:server');
@@ -14,8 +21,24 @@ const debug = debugLib('templateappexrepssmvc:server');
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+app.use((req, res, next) => {
+  rateLimiter
+    .consume(req.ip)
+    .then(() => {
+      next();
+    })
+    .catch(() => {
+      res.status(429).send('Too Many Requests');
+    });
+});
+
+app.locals.globalView = {
+  example: "thisIsAGlobalVariable"
+}
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'twig');
+
 
 function normalizePort(val) {
   let port = parseInt(val, 10);
@@ -68,7 +91,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 app.use(function (req, res, next) {
   next(createError(404));

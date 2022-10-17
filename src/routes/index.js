@@ -1,8 +1,12 @@
-import express from 'express';
-var router = express.Router();
+import { Router } from 'express';
+import admin from './admin.js';
+import editor from './editor.js';
+import users from './users.js';
 
-router.get('/', function (req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+let rootRouter = Router();
 
-export default router;
+rootRouter.use('/user', users);
+rootRouter.use('/admin', admin);
+rootRouter.use('/editor', editor);
+
+export default rootRouter;
