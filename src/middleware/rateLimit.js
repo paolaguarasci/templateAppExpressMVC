@@ -1,5 +1,5 @@
-import { RateLimiterMemory } from 'rate-limiter-flexible';
-import { rateLimiteOptions } from '../config/express.js'
+import { RateLimiterMemory } from "rate-limiter-flexible";
+import { rateLimiteOptions } from "../config/express.js";
 const rateLimiter = new RateLimiterMemory(rateLimiteOptions);
 
 export function ratelimit(req, res, next) {
@@ -9,6 +9,6 @@ export function ratelimit(req, res, next) {
       next();
     })
     .catch(() => {
-      res.status(429).send('Too Many Requests');
+      res.status(429).send("Too Many Requests");
     });
 }

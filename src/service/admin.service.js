@@ -1,4 +1,4 @@
-const TEMPLATEADMIN = [{ id: 1, name: 'admin', role: 'admin' }];
+const TEMPLATEADMIN = [{ id: 1, name: "admin", role: "admin" }];
 
 let AdminService = {
   get: (adminId) => {
@@ -17,6 +17,6 @@ let AdminService = {
   },
   delete: (admin) => {
     return TEMPLATEADMIN.filter((a) => admin.id != a.id);
-  }
+  },
 };
 export default AdminService;

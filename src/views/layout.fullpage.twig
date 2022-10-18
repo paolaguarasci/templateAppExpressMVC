@@ -12,15 +12,14 @@
       crossorigin="anonymous" />
     <link rel="stylesheet" href="/css/style.css" />
 
+    {% block localcss %}
 
-        {% block localcss %}
-        {% endblock %}
-
-
+    {% endblock %}
   </head>
-<body class="text-center">
-        {% block body %}
-        {% endblock %}
+  <body class="text-center">
+    {% block body %}
+
+    {% endblock %}
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
       integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
@@ -29,8 +28,8 @@
       integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk"
       crossorigin="anonymous"></script>
 
-        {% block localjs %}
-        {% endblock %}
+    {% block localjs %}
 
+    {% endblock %}
   </body>
 </html>
