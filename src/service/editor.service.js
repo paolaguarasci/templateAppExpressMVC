@@ -1,26 +1,27 @@
-const TEMPLATEEDITORS = [
-  { id: 1, name: "paola", role: "editor" },
-  { id: 2, name: "antonio", role: "editor" },
-  { id: 3, name: "giorgio", role: "editor" },
-];
+import Editor from '../model/Editor.js'
 
 let EditorService = {
-  get: (editorId) => {
-    return TEMPLATEEDITORS.find((u) => u.id === editorId);
+  get: async (editorId) => {
+    return await Editor.findById(editorId)
   },
-  all: () => {
-    return TEMPLATEEDITORS;
+  all: async () => {
+    return await Editor.find({})
   },
-  add: (editor) => {
-    TEMPLATEEDITORS.push(editor);
+  add: async (editor) => {
+    return await Editor.create(editor)
   },
-  edit: (editor) => {
-    let editorFromSource = TEMPLATEEDITORS.find((u) => u.id === editor.id);
-    editorFromSource = editor;
-    return TEMPLATEEDITORS;
+  edit: async (editor) => {
+    return await Editor.updateOne(editor)
   },
-  delete: (editor) => {
-    return TEMPLATEEDITORS.filter((u) => u.id != editor.id);
+  delete: async (editor) => {
+    return await Editor.deleteOne(editor)
+  },
+
+  bulkEdit: async (editors) => {
+    return await Editor.updateMany(editors)
+  },
+  bulkDelete: async (editors) => {
+    return await Editor.deleteMany(editors)
   },
 };
 export default EditorService;

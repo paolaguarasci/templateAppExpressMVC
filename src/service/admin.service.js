@@ -1,22 +1,27 @@
-const TEMPLATEADMIN = [{ id: 1, name: "admin", role: "admin" }];
+import Admin from '../model/Admin.js'
 
 let AdminService = {
-  get: (adminId) => {
-    return TEMPLATEADMIN.find((u) => u.id === adminId);
+  get: async (adminId) => {
+    return await Admin.findById(adminId)
   },
-  all: () => {
-    return TEMPLATEADMIN;
+  all: async () => {
+    return await Admin.find({})
   },
-  add: (admin) => {
-    return TEMPLATEADMIN.push(admin);
+  add: async (admin) => {
+    return await Admin.create(admin)
   },
-  edit: (admin) => {
-    let adminFromSource = TEMPLATEADMIN.find((a) => a.id === admin.id);
-    adminFromSource = admin;
-    return TEMPLATEADMIN;
+  edit: async (admin) => {
+    return await Admin.updateOne(admin)
   },
-  delete: (admin) => {
-    return TEMPLATEADMIN.filter((a) => admin.id != a.id);
+  delete: async (admin) => {
+    return await Admin.deleteOne(admin)
+  },
+
+  bulkEdit: async (admins) => {
+    return await Admin.updateMany(admins)
+  },
+  bulkDelete: async (admins) => {
+    return await Admin.deleteMany(admins)
   },
 };
 export default AdminService;

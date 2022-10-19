@@ -1,26 +1,30 @@
-const TEMPLATEUSERS = [
-  { id: 1, name: "paola", role: "user" },
-  { id: 2, name: "antonio", role: "user" },
-  { id: 3, name: "giorgio", role: "user" },
-];
+import User from "../model/User.js";
 
 let UserService = {
-  get: (userId) => {
-    return TEMPLATEUSERS.find((u) => u.id === userId);
+  get: async (userId) => {
+    let user = await User.findOne({ username: 'user'});
+    console.log("UserService ", user);
+    return user
   },
-  all: () => {
-    return TEMPLATEUSERS;
+  all: async () => {
+    return await User.find({});
   },
-  add: (user) => {
-    TEMPLATEUSERS.push(user);
+  add: async (user) => {
+    return await User.create(user);
   },
-  edit: (user) => {
-    let userFromSource = TEMPLATEUSERS.find((u) => u.id === user.id);
-    userFromSource = user;
-    return TEMPLATEUSERS;
+  edit: async (user) => {
+    return await User.updateOne(user);
   },
-  delete: (user) => {
-    return TEMPLATEUSERS.filter((u) => u.id != user.id);
+  delete: async (user) => {
+    return await User.deleteOne(user);
+  },
+
+  bulkEdit: async (users) => {
+    return await User.updateMany(users);
+  },
+  bulkDelete: async (users) => {
+    return await User.deleteMany(users);
   },
 };
+
 export default UserService;

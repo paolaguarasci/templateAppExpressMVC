@@ -1,15 +1,6 @@
+import UserBase from './UserBase.js'
 import mongoose from "mongoose";
-import passportLocalMongoose from "passport-local-mongoose";
 
-var UserSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    unique: true,
-    required: true,
-  },
-});
+const User = UserBase.discriminator('user', new mongoose.Schema({}, { discriminatorKey: 'role' }))
 
-UserSchema.plugin(passportLocalMongoose);
-
-const User = mongoose.model("User", UserSchema);
 export default User;

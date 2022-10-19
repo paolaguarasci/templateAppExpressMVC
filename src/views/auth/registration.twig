@@ -9,28 +9,43 @@
     <form>
       <img class="mb-4" src="/img/logo.jpeg" alt="" width="40" height="40" />
       <h1 class="h3 mb-3 fw-normal">
-        Please login
+        Please sign in
       </h1>
 
       <div class="form-floating">
-        <input type="text"
+        <input type="username"
           class="form-control"
           id="username"
-          placeholder="" />
+          placeholder="username" autocomplete pattern="[A-Za-z]{8,15}"/>
         <label for="username">Username</label>
       </div>
+
       <div class="form-floating">
         <input type="password"
           class="form-control"
           id="password"
-          placeholder="Password" />
+          placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,50}" />
         <label for="password">Password</label>
       </div>
 
-      <div>
-        <a href="/auth/registration">Are you not signed in? Sign in!</a>
+      <div class="form-floating">
+        <input type="password"
+          class="form-control"
+          id="confirmationPassword"
+          placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,50}" />
+        <label for="confirmationPassword">Confirm Password</label>
       </div>
-      <button class="w-100 btn btn-lg btn-primary" type="submit" id="btnSubmit">Login</button>
+
+      <div id="message">
+
+      </div>
+
+      <div>
+        <a href="/auth/login">Are you already signed in? Login!</a>
+      </div>
+      <button class="w-100 btn btn-lg btn-primary" type="submit" id="btnSubmit">
+        Sign in
+      </button>
       <p class="mt-5 mb-3 text-muted">
         &copy; 2022
       </p>
@@ -38,6 +53,7 @@
   </main>
 {% endblock %}
 
+localjs
 {% block localjs %}
-  <script src="/js/sendLogin.js"></script>
+  <script src="/js/sendRegistration.js"></script>
 {% endblock %}

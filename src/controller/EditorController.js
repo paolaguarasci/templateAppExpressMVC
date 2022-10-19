@@ -6,8 +6,7 @@ let EditorController = {
     let data = JSON.stringify({
       editorList,
     });
-    let user = EditorService.get(1);
-    res.render("editor/home.twig", { title: "Editor Home", data, user });
+    res.render("editor/home.twig", { title: "Editor Home", data });
   },
 };
 export default EditorController;
