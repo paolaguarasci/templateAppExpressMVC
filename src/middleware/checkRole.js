@@ -10,7 +10,6 @@ export default function checkRole(role) {
   return async function (req, res, next) {
     let userId = req.session?.passport?.user;
     let user = await UserBase.findById(userId);
-    console.log("user ", user);
 
     let actualPrivilegeRate = privilegeRate[user.role];
     let desiderataPrivilegeRate = privilegeRate[role];

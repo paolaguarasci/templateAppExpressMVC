@@ -3,7 +3,6 @@ import User from "../model/User.js";
 let UserService = {
   get: async (userId) => {
     let user = await User.findOne({ username: 'user'});
-    console.log("UserService ", user);
     return user
   },
   all: async () => {

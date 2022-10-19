@@ -17,21 +17,23 @@ function passwordsMatch() {
   return password.value === confirmationPassword.value;
 }
 
-btnSubmit.addEventListener("click", function (event) {
+btnSubmit.addEventListener("click", async function (event) {
   event.preventDefault()
   if (validationForm()) {
-    fetch("/auth/registration", {
-      method: "POST",
-      body: JSON.stringify({
-        username: username.value,
-        password: password.value,
-        confirmationPassword: confirmationPassword.value,
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    })
-      .then((response) => response.json())
-      .then((json) => console.log(json));
+    try {
+      fetch("/auth/registration", {
+        method: "POST",
+        body: JSON.stringify({
+          username: username.value,
+          password: password.value,
+          confirmationPassword: confirmationPassword.value,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      })
+    }catch(e) {
+      console.log("Registration post - client side - error: ", e)
+    }
   }
 });

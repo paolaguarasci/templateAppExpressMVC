@@ -12,7 +12,7 @@ let AuthController = {
   registrationPost: async (req, res) => {
     // TODO Validation request
     try {
-      let user = await AuthService.registration(req.body);
+      await AuthService.registration(req.body);
       res.render("auth/registration.twig", { title: "Registration Page" });
     } catch (e) {
       console.log("Constroller ", e.message);
@@ -21,7 +21,6 @@ let AuthController = {
   },
 
   loginPost: async (req, res) => {
-    console.log("user ", req.session);
     let redirectTo = req.originalUrl != "/auth/login" ? req.originalUrl : "/";
     res.redirect(redirectTo);
   },

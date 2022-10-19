@@ -27,12 +27,11 @@ btnSubmit.addEventListener("click", async function (event) {
           "Content-type": "application/json; charset=UTF-8",
         },
       });
-      console.log(login);
       if (login.redirected) {
         window.location.replace(login.url);
       }
     } catch (e) {
-      console.log(e);
+      console.log("Login post - client side - error: ", e);
     }
   }
 });
