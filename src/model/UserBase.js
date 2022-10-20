@@ -1,6 +1,5 @@
 import { hashUtils } from "../utils/hash.js";
 import mongoose from "mongoose";
-import passportLocalMongoose from "passport-local-mongoose";
 
 var UserBaseSchema = new mongoose.Schema(
   {

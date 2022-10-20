@@ -29,9 +29,8 @@ let AuthController = {
     req.logout(function (err) {
       if (err) {
         return next(err);
-      }
-      res.redirect("/auth/login");
-    });
+      }});
+    res.redirect("/auth/login");
   },
 };
 export default AuthController;
