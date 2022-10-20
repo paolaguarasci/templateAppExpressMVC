@@ -2,7 +2,7 @@ import User from "../model/User.js";
 
 let UserService = {
   get: async (userId) => {
-    let user = await User.findOne({ username: 'user'});
+    let user = await User.findById(userId);
     return user
   },
   all: async () => {

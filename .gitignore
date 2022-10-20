@@ -222,3 +222,5 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/node,windows,snyk,macos,linux
 
 package-lock.json
+cert/localhost.crt
+cert/localhost.key

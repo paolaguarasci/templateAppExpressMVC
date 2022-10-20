@@ -13,23 +13,18 @@ let AuthController = {
     // TODO Validation request
     try {
       await AuthService.registration(req.body);
-      res.render("auth/registration.twig", { title: "Registration Page" });
+      res.redirect("/");
     } catch (e) {
-      console.log("Constroller ", e.message);
       res.render("error.twig");
     }
   },
 
   loginPost: async (req, res) => {
-    let redirectTo = req.originalUrl != "/auth/login" ? req.originalUrl : "/";
-    res.redirect(redirectTo);
+    res.redirect("/");
   },
 
   logout: async (req, res) => {
-    req.logout(function (err) {
-      if (err) {
-        return next(err);
-      }});
+    req.logout(() => {});
     res.redirect("/auth/login");
   },
 };

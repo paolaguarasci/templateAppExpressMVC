@@ -16,7 +16,6 @@ let AdminService = {
   delete: async (admin) => {
     return await Admin.deleteOne(admin)
   },
-
   bulkEdit: async (admins) => {
     return await Admin.updateMany(admins)
   },

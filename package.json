@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
+    "chai": "^4.3.6",
+    "connect-mongo": "^4.6.0",
     "cookie-parser": "~1.4.6",
     "dotenv": "^16.0.3",
     "express": "^5.0.0-beta.1",
@@ -23,6 +25,7 @@
     "passport-local": "^1.0.0",
     "rate-limiter-flexible": "^2.3.12",
     "rimraf": "^3.0.2",
+    "sinon": "^14.0.1",
     "twig": "~1.15.4"
   },
   "devDependencies": {

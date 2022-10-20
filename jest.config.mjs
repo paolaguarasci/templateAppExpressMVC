@@ -5,7 +5,7 @@
 
 export default {
   // All imported modules in your tests should be mocked automatically
-  // automock: false,
+  // automock: true,
 
   // Stop running tests after `n` failures
   // bail: 0,
@@ -145,7 +145,7 @@ export default {
 
   // The test environment that will be used for testing
   // testEnvironment: "jest-environment-node",
-
+  testEnvironment: 'node',
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},
 
@@ -177,10 +177,10 @@ export default {
   // transform: undefined,
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
-  // transformIgnorePatterns: [
-  //   "/node_modules/",
-  //   "\\.pnp\\.[^\\/]+$"
-  // ],
+  transformIgnorePatterns: [
+    "/node_modules/",
+    // "\\.pnp\\.[^\\/]+$"
+  ],
 
   // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them
   // unmockedModulePathPatterns: undefined,

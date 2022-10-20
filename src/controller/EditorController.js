@@ -1,10 +1,10 @@
-import EditorService from "../service/editor.service.js";
+import UserService from "../service/user.service.js"
 
 let EditorController = {
-  home: (req, res) => {
-    let editorList = EditorService.all();
+  home: async (req, res) => {
+    let userList = await UserService.all();
     let data = JSON.stringify({
-      editorList,
+      userList,
     });
     res.render("editor/home.twig", { title: "Editor Home", data });
   },
