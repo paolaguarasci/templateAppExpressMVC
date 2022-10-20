@@ -8,8 +8,10 @@ export default (passport) => {
 
   passport.use(
     new LocalStrategy(async function (username, candidatePassword, done) {
+      console.log("passport in")
       let user = await AuthService.login(username, candidatePassword);
       if (!user) return done(null, false);
+      console.log("passport out")
       return done(null, user);
     })
   );

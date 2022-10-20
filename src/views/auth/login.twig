@@ -6,38 +6,36 @@
 
 {% block body %}
   <main class="form-signin w-100 m-auto">
-    <form>
-      <img class="mb-4" src="/img/logo.jpeg" alt="" width="40" height="40" />
-      <h1 class="h3 mb-3 fw-normal">
-        Please login
-      </h1>
-
+    <form action="/auth/login" method="POST">
+      <img class="mb-5" src="/img/logo.jpeg" alt="" width="40" height="40" />
       <div class="form-floating">
         <input type="text"
           class="form-control"
           id="username"
-          placeholder="" />
+          name="username"
+          placeholder="" pattern="^[A-Za-z][A-Za-z0-9_-]{8,15}$"/>
         <label for="username">Username</label>
       </div>
       <div class="form-floating">
         <input type="password"
           class="form-control"
           id="password"
-          placeholder="Password" />
+          name="password"
+          placeholder="Password" pattern="^(?=.*\d)(?=(.*\W){2})(?=.*[a-zA-Z])(?!.*\s).{8,32}$" />
         <label for="password">Password</label>
       </div>
-
+      <div id="err">
+       {{ data.err }}
+      </div>
       <div>
         <a href="/auth/registration">Are you not signed in? Sign in!</a>
       </div>
-      <button class="w-100 btn btn-lg btn-primary" type="submit" id="btnSubmit">Login</button>
+      <button class="w-100 btn btn-lg btn-primary" type="submit" id="btnSubmit">
+        Login
+      </button>
       <p class="mt-5 mb-3 text-muted">
         &copy; 2022
       </p>
     </form>
   </main>
-{% endblock %}
-
-{% block localjs %}
-  <script src="/js/sendLogin.js"></script>
 {% endblock %}

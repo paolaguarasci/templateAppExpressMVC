@@ -6,40 +6,41 @@
 
 {% block body %}
   <main class="form-signin w-100 m-auto">
-    <form>
+    <form action="/auth/registration" method="POST" class="row g-3 needs-validation" novalidate>
       <img class="mb-4" src="/img/logo.jpeg" alt="" width="40" height="40" />
-      <h1 class="h3 mb-3 fw-normal">
-        Please sign in
-      </h1>
-
       <div class="form-floating">
         <input type="username"
+          name="username"
+          required
           class="form-control"
           id="username"
-          placeholder="username" autocomplete pattern="[A-Za-z]{8,15}"/>
+          placeholder="username" pattern="^[A-Za-z][A-Za-z0-9_-]{8,15}$"/>
         <label for="username">Username</label>
       </div>
 
       <div class="form-floating">
         <input type="password"
+        required
           class="form-control"
+          name="password"
           id="password"
-          placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,50}" />
+          placeholder="Password" pattern="^(?=.*\d)(?=(.*\W){2})(?=.*[a-zA-Z])(?!.*\s).{8,32}$" />
         <label for="password">Password</label>
       </div>
 
       <div class="form-floating">
         <input type="password"
+        required
           class="form-control"
+          name="confirmationPassword"
           id="confirmationPassword"
-          placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,50}" />
+          placeholder="Password"
+          />
         <label for="confirmationPassword">Confirm Password</label>
       </div>
-
-      <div id="message">
-
+      <div id="err">
+       {{ data.err }}
       </div>
-
       <div>
         <a href="/auth/login">Are you already signed in? Login!</a>
       </div>
@@ -53,7 +54,7 @@
   </main>
 {% endblock %}
 
-localjs
 {% block localjs %}
-  <script src="/js/sendRegistration.js"></script>
+  <script src="/js/formValidation.js"></script>
 {% endblock %}
+

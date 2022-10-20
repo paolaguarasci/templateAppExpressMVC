@@ -31,3 +31,11 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+div#err {
+  margin-top: 25px;
+  margin-bottom: 0px;
+  color: red;
+  font-weight: 800;
+  height: 25px;
+}

@@ -1,4 +1,6 @@
+// file deepcode ignore NoRateLimitingForExpensiveWebOperation: c'e', globale, ma non lo rileva
 import AuthService from "../service/auth.service.js";
+import sanitizeHtml from "sanitize-html";
 
 let AuthController = {
   loginGet: async (req, res) => {
@@ -6,16 +8,22 @@ let AuthController = {
   },
 
   registrationGet: async (req, res) => {
-    res.render("auth/registration.twig", { title: "Registration Page" });
+    res.render("auth/registration.twig", {
+      title: "Registration Page",
+    });
   },
 
   registrationPost: async (req, res) => {
-    // TODO Validation request
+    let newUser = req.body;
     try {
-      await AuthService.registration(req.body);
+      await AuthService.registration(newUser);
       res.redirect("/");
     } catch (e) {
-      res.render("error.twig");
+      console.log(e.message)
+      res.render("auth/registration.twig", {
+        title: "Registration Page",
+        data: { err: e },
+      });
     }
   },
 

@@ -9,7 +9,7 @@ let AuthService = {
         password: registrationRequest.password,
       });
     } catch (e) {
-      throw Error(e);
+      throw e;
     }
   },
   login: async (username, candidatePassword) => {
