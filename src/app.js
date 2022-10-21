@@ -30,7 +30,7 @@ mongoose
   });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
-
+console.log("")
 app.disable("x-powered-by");
 app.use(ratelimit);
 app.set("views", path.join(__dirname, "views"));
