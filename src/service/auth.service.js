@@ -9,8 +9,13 @@ const AuthService = {
     });
   },
   login: async (username, candidatePassword) => {
-    const user = await UserBase.findOne({ username: username });
-    const checkPassword = await user.comparePassword(candidatePassword);
+    try {
+      const user = await UserBase.findOne({ username: username });
+      const checkPassword = await user.comparePassword(candidatePassword);
+    } catch (e) {
+      console.log("Errore in service login ")
+      throw Error(e)
+    }
     return checkPassword ? user : {};
   },
   logout: () => {},

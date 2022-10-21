@@ -5,9 +5,14 @@ import UserBase from '../model/UserBase.js';
 export default (passport) => {
   passport.use(
       new LocalStrategy(async function(username, candidatePassword, done) {
-        const user = await AuthService.login(username, candidatePassword);
-        if (!user) return done(null, false);
-        return done(null, user);
+        try {
+          const user = await AuthService.login(username, candidatePassword);
+          if (!user) return done(null, false);
+          return done(null, user);
+        } catch (e) {
+          console.log("User not found")
+          done(null, false);
+        }
       }),
   );
 
