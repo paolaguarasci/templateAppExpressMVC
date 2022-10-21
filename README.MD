@@ -4,7 +4,7 @@
 
 <h1 align="center" style="margin-top: 10px;">MVC Express with template engine</h1>
 
-<p align="center" >Another awesome Express template</p>
+<p align="center">Another awesome Express template</p>
 
 <div align="center" >
 
@@ -15,19 +15,19 @@
 - MVC Architecture
 - [Twig](https://www.npmjs.com/package/twig) as template engine
 - [Express](https://www.npmjs.com/package/express) version 5 (**still in BETA!**)
-- Test drive development
 - Login with [passport](https://www.npmjs.com/package/passport) (username/password)
 - Security headers (with [helmet](https://www.npmjs.com/package/helmet))
 - Protection against url parameter pollution (with [HPP](https://www.npmjs.com/package/hpp))
-- HTTPS support (need to build your own localhost cert/key or use valid cert/key in production)
 - MongoDB/Mongoose (with [Atlas](https://cloud.mongodb.com/))
-- Basic Role base access controll (user, editor, admin)
 - Rate limiter (with [node-rate-limiter-flexible](https://www.npmjs.com/package/rate-limiter-flexible))
-- Dockerizzed
 - [Snyk](https://snyk.io/) tested for code quality and vulnerability
-- [ESLint](https://www.npmjs.com/package/eslint)
-- ES6+ syntax
+- HTTPS support (need to build your own localhost cert/key or use valid cert/key in production)
+- Dockerizzed
+- Basic Role base access controll (user, editor, admin)
 - Input validation (server-side)
+- Test drive development
+- ES6+ syntax
+- [ESLint](https://www.npmjs.com/package/eslint)
 
 This project is developed using the very latest version of node (version 19). I do not exclude that it also works with older but fairly recent versions.
 
