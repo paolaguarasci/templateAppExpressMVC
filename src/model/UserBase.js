@@ -9,7 +9,7 @@ const UserBaseSchema = new mongoose.Schema(
         trim: true,
         minLenght: [8, 'Username min length is 8'],
         maxLenght: [15, 'Username max length is 15'],
-        match: [/^[A-Za-z][A-Za-z0-9_-]{8,15}$/, 'Usernamen not match'],
+        match: [/^[A-Za-z][A-Za-z0-9_-]{8,15}$/, 'Usernamessss not match'],
       },
       password: {
         type: String,
@@ -35,7 +35,7 @@ UserBaseSchema.pre('save', async function(next) {
 UserBaseSchema.methods.validatePassword = async function(newUser) {
   let candidatePassword = newUser.password;
   if (candidatePassword.length < 8 || candidatePassword.length > 32) {
-    throw new Error('Password must be lenght betwen 8 and 32 charters');
+    throw new Error('Password must be length between 8 and 32 charters');
   }
   console.log('candidatePassword ', candidatePassword);
   candidatePassword = candidatePassword.trim();

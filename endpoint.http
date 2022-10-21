@@ -8,10 +8,25 @@ Content-Type: application/json
   "password": "pasticcio"
 }
 
+###
+POST https://localhost:8443/auth/registration
+Content-Type: application/x-www-form-urlencoded
+
+username=ciccio&password=pasticcio
+
 
 
 ###
-POST https://localhost:8443/auth/registration
+POST https://localhost:8443/auth/login
+Content-Type: application/json
+
+{
+  "username": "ciccio",
+  "password": "pasticcio"
+}
+
+###
+POST https://localhost:8443/auth/login
 Content-Type: application/x-www-form-urlencoded
 
 username=ciccio&password=pasticcio
