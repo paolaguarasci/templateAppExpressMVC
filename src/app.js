@@ -7,6 +7,7 @@ import express from "express";
 import { fileURLToPath } from "url";
 import fs from "fs";
 import helmet from "helmet";
+import hpp from 'hpp'
 import https from "https";
 import indexRouter from "./routes/index.js";
 import logger from "morgan";
@@ -25,7 +26,7 @@ const certPath = path.join(__dirname, "..", "cert");
 mongoose
   .connect(process.env.MONGO_CONNECTION_STRING, { maxPoolSize: 10 })
   .catch((error) => {
-    console.log(error);
+    console.log("Mongoose error \n", error);
   });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
@@ -35,6 +36,7 @@ app.use(ratelimit);
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "twig");
 app.use(express.urlencoded({ extended: false }));
+app.use(hpp())
 app.use(express.json());
 app.use(logger("dev"));
 app.use(cookieParser());
