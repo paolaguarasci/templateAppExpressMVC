@@ -12,11 +12,11 @@ const AuthService = {
     try {
       const user = await UserBase.findOne({ username: username });
       const checkPassword = await user.comparePassword(candidatePassword);
+      return checkPassword ? user : {};
     } catch (e) {
       console.log("Errore in service login ")
       throw Error(e)
     }
-    return checkPassword ? user : {};
   },
   logout: () => {},
 };
