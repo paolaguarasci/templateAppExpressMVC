@@ -6,8 +6,8 @@
 
 <p align="center">Another awesome Express template</p>
 
-<div align="center" >
-
+<div align="center">
+<a href="https://github.com/paolaguarasci/templateAppExpressMVC/actions/workflows/eslint.yml"><img width="100" src="https://github.com/paolaguarasci/templateAppExpressMVC/actions/workflows/eslint.yml/badge.svg?branch=dev" alt="MVC Express" align="center"></a>
 </div>
 
 ### Features
@@ -24,7 +24,7 @@
 - HTTPS support (need to build your own localhost cert/key or use valid cert/key in production)
 - Dockerizzed
 - Basic Role base access controll (user, editor, admin)
-- Input validation (server-side)
+- Server side input validation (with [express-validator](https://www.npmjs.com/package/express-validator))
 - Test drive development
 - ES6+ syntax
 - [ESLint](https://www.npmjs.com/package/eslint)
@@ -127,3 +127,7 @@ https://github.com/docker/docker-bench-security
 ### Disclaimer
 
 This is a project created primarily to put together some good programming ideas and have a base from which to start if needed. It is therefore code for personal use. It does not claim to be anything official so use it at your own discretion, on your own responsibility.
+
+
+
+

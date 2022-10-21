@@ -1,43 +1,43 @@
-import {hashUtils} from '../utils/hash.js';
-import mongoose from 'mongoose';
+import { hashUtils } from "../utils/hash.js";
+import mongoose from "mongoose";
 const UserBaseSchema = new mongoose.Schema(
-    {
-      username: {
-        type: String,
-        unique: true,
-        required: [true, 'Username is required'],
-        trim: true,
-        minLenght: [8, 'Username min length is 8'],
-        maxLenght: [15, 'Username max length is 15'],
-        match: [/^[A-Za-z][A-Za-z0-9_-]{8,15}$/, 'Usernamessss not match'],
-      },
-      password: {
-        type: String,
-        required: true,
-      },
+  {
+    username: {
+      type: String,
+      unique: true,
+      required: [true, "Username is required"],
+      trim: true,
+      minLenght: [8, "Username min length is 8"],
+      maxLenght: [15, "Username max length is 15"],
+      match: [/^[A-Za-z][A-Za-z0-9_-]{8,15}$/, "Usernamessss not match"],
     },
-    {discriminatorKey: 'role'},
+    password: {
+      type: String,
+      required: true,
+    },
+  },
+  { discriminatorKey: "role" }
 );
 
-UserBaseSchema.pre('save', async function(next) {
+UserBaseSchema.pre("save", async function (next) {
   const newDoc = this;
-  const original = await this.constructor.findOne({username: this.username});
+  const original = await this.constructor.findOne({ username: this.username });
   if (original) {
-    throw new Error('Username alredy present');
+    throw new Error("Username alredy present");
   }
-  console.log('Valido la password');
+  console.log("Valido la password");
   await this.validatePassword(newDoc);
-  console.log('Password valida');
+  console.log("Password valida");
   newDoc.password = await hashUtils.getHash(newDoc.password);
   next();
 });
 
-UserBaseSchema.methods.validatePassword = async function(newUser) {
+UserBaseSchema.methods.validatePassword = async function (newUser) {
   let candidatePassword = newUser.password;
   if (candidatePassword.length < 8 || candidatePassword.length > 32) {
-    throw new Error('Password must be length between 8 and 32 charters');
+    throw new Error("Password must be length between 8 and 32 charters");
   }
-  console.log('candidatePassword ', candidatePassword);
+  console.log("candidatePassword ", candidatePassword);
   candidatePassword = candidatePassword.trim();
   /**
    * (?=.*\d)         should contain at least 1 digit
@@ -48,22 +48,22 @@ UserBaseSchema.methods.validatePassword = async function(newUser) {
    */
   const regExp = /^(?=.*\d)(?=(.*\W){2})(?=.*[a-zA-Z])(?!.*\s).{8,32}$/;
   if (!regExp.test(candidatePassword)) {
-    console.log('wrong password');
-    throw new Error('Password format is incorrect!');
+    console.log("wrong password");
+    throw new Error("Password format is incorrect!");
   }
 };
 
-UserBaseSchema.methods.comparePassword = async function(candidatePassword) {
+UserBaseSchema.methods.comparePassword = async function (candidatePassword) {
   try {
     const isMatch = await hashUtils.compareTextWithHash(
-        candidatePassword,
-        this.password,
+      candidatePassword,
+      this.password
     );
     return isMatch;
   } catch (err) {
-    throw Error('Password dont match');
+    throw Error("Password dont match");
   }
 };
 
-const UserBase = mongoose.model('User', UserBaseSchema);
+const UserBase = mongoose.model("User", UserBaseSchema);
 export default UserBase;
