@@ -5,10 +5,8 @@ import UserBase from '../model/UserBase.js';
 export default (passport) => {
   passport.use(
       new LocalStrategy(async function(username, candidatePassword, done) {
-        console.log('passport in');
         const user = await AuthService.login(username, candidatePassword);
         if (!user) return done(null, false);
-        console.log('passport out');
         return done(null, user);
       }),
   );
