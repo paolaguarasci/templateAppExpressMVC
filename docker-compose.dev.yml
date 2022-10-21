@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  web:
+    image: "node:alpine"
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./:/home/node/app
+    ports:
+      - "8443:8443"
+    command: "npm run start:dev"
