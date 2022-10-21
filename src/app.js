@@ -24,7 +24,9 @@ const certPath = path.join(__dirname, "..", "cert");
 
 mongoose
   .connect(process.env.MONGO_CONNECTION_STRING, { maxPoolSize: 10 })
-  .catch((error) => handleError(error));
+  .catch((error) => {
+    console.log(error);
+  });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
@@ -73,10 +75,10 @@ app.use("/", indexRouter);
 app.use(createErrorMiddleware);
 app.use(errorToView);
 
-let port = normalizePort(process.env.PORT || "3000");
+const port = normalizePort(process.env.PORT || "3000");
 app.set("port", port);
 
-let server = https.createServer(
+const server = https.createServer(
   {
     key: fs.readFileSync(path.join(certPath, "localhost.key"), "utf8"),
     cert: fs.readFileSync(path.join(certPath, "localhost.crt"), "utf8"),

@@ -1,4 +1,4 @@
-import UserBase from "../model/UserBase.js";
+import UserBase from '../model/UserBase.js';
 
 const privilegeRate = {
   admin: 100,
@@ -7,12 +7,12 @@ const privilegeRate = {
 };
 
 export default function checkRole(role) {
-  return async function (req, res, next) {
-    let userId = req.session?.passport?.user;
-    let user = await UserBase.findById(userId);
+  return async function(req, res, next) {
+    const userId = req.session?.passport?.user;
+    const user = await UserBase.findById(userId);
 
-    let actualPrivilegeRate = privilegeRate[user.role];
-    let desiderataPrivilegeRate = privilegeRate[role];
+    const actualPrivilegeRate = privilegeRate[user.role];
+    const desiderataPrivilegeRate = privilegeRate[role];
 
     if (actualPrivilegeRate >= desiderataPrivilegeRate) {
       next();

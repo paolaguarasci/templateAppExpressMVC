@@ -2,7 +2,8 @@ export function createErrorMiddleware(req, res, next) {
   next(createError(404));
 }
 
-export function errorToView(err, req, res, next) {
+
+export function errorToView(err, req, res, next) { // eslint-disable-line no-unused-vars
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
   res.status(err.status || 500);

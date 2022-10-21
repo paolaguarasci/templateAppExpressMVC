@@ -1,8 +1,8 @@
-import UserService from "../service/user.service.js";
+import UserService from '../service/user.service.js'; // eslint-disable-line no-unused-vars
 
-let UserController = {
+const UserController = {
   home: async (req, res) => {
-    res.render("user/home.twig", { title: "User Home", data: "{}" });
+    res.render('user/home.twig', {title: 'User Home', data: '{}'});
   },
 };
 export default UserController;

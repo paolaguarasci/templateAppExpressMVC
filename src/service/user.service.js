@@ -1,9 +1,9 @@
-import User from "../model/User.js";
+import User from '../model/User.js';
 
-let UserService = {
+const UserService = {
   get: async (userId) => {
-    let user = await User.findById(userId);
-    return user
+    const user = await User.findById(userId);
+    return user;
   },
   all: async () => {
     return await User.find({});

@@ -1,20 +1,16 @@
 import User from "../model/User.js";
 import UserBase from "../model/UserBase.js";
 
-let AuthService = {
+const AuthService = {
   registration: async (registrationRequest) => {
-    try {
-      return await User.create({
-        username: registrationRequest.username,
-        password: registrationRequest.password,
-      });
-    } catch (e) {
-      throw e;
-    }
+    return await User.create({
+      username: registrationRequest.username,
+      password: registrationRequest.password,
+    });
   },
   login: async (username, candidatePassword) => {
-    let user = await UserBase.findOne({ username: username });
-    let checkPassword = await user.comparePassword(candidatePassword);
+    const user = await UserBase.findOne({ username: username });
+    const checkPassword = await user.comparePassword(candidatePassword);
     return checkPassword ? user : {};
   },
   logout: () => {},

@@ -1,27 +1,27 @@
-import Editor from '../model/Editor.js'
+import Editor from '../model/Editor.js';
 
-let EditorService = {
+const EditorService = {
   get: async (editorId) => {
-    return await Editor.findById(editorId)
+    return await Editor.findById(editorId);
   },
   all: async () => {
-    return await Editor.find({})
+    return await Editor.find({});
   },
   add: async (editor) => {
-    return await Editor.create(editor)
+    return await Editor.create(editor);
   },
   edit: async (editor) => {
-    return await Editor.updateOne(editor)
+    return await Editor.updateOne(editor);
   },
   delete: async (editor) => {
-    return await Editor.deleteOne(editor)
+    return await Editor.deleteOne(editor);
   },
 
   bulkEdit: async (editors) => {
-    return await Editor.updateMany(editors)
+    return await Editor.updateMany(editors);
   },
   bulkDelete: async (editors) => {
-    return await Editor.deleteMany(editors)
+    return await Editor.deleteMany(editors);
   },
 };
 export default EditorService;
