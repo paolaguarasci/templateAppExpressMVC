@@ -1,5 +1,4 @@
-import Admin from "../src/model/Admin.js";
-import AdminService from "../src/service/admin.service.js";
+import AdminService from "../../src/service/admin.service.js";
 
 const adminUsers = [
   { id: 1, username: "john" },
@@ -13,7 +12,7 @@ const newAdmins = [
   { id: 3, username: "nicola" },
 ];
 
-jest.mock("../src/model/Admin.js", () => ({
+jest.mock("../../src/model/Admin.js", () => ({
   findById: jest
     .fn()
     .mockImplementation((id) => adminUsers.find((admin) => admin.id === id)),

@@ -1,4 +1,4 @@
-import UserController from "../src/controller/UserController.js";
+import UserController from "../../src/controller/UserController.js";
 
 const req = {};
 const res = { render: jest.fn() };
