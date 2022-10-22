@@ -58,13 +58,25 @@ In order to start developing and expanding this template you must:
    printf "[dn]\nCN=localhost\n[req]\ndistinguished_name = dn\n[EXT]\nsubjectAltName=DNS:localhost\nkeyUsage=digitalSignature\nextendedKeyUsage=serverAuth")
   ```
 
-### Start dev mode
+### Start dev mode - host
+
+```shell
+$ npm run start:dev
+```
+
+### Start production mode - host
+
+```shell
+$ npm run start:prod
+```
+
+### Start dev mode - docker
 
 ```shell
 $ docker compose -f docker-compose.dev.yaml up
 ```
 
-### Start production mode
+### Start production mode - docker
 
 ```shell
 $ docker compose -f docker-compose.prod.yaml up -d
@@ -138,10 +150,4 @@ https://github.com/docker/docker-bench-security
 
 This is a project created primarily to put together some good programming ideas and have a base from which to start if needed. It is therefore code for personal use. It does not claim to be anything official so use it at your own discretion, on your own responsibility.
 
-
-
-
-
 test
-
-
