@@ -14,8 +14,8 @@ const AuthService = {
       const checkPassword = await user.comparePassword(candidatePassword);
       return checkPassword ? user : {};
     } catch (e) {
-      console.log("Errore in service login ")
-      throw Error(e)
+      console.log("Errore in service login");
+      throw Error(e);
     }
   },
   logout: () => {},

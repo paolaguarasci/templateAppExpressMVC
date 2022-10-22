@@ -14,6 +14,7 @@ const UserBaseSchema = new mongoose.Schema(
     password: {
       type: String,
       required: true,
+      select: false,
     },
   },
   { discriminatorKey: "role" }
@@ -55,9 +56,12 @@ UserBaseSchema.methods.validatePassword = async function (newUser) {
 
 UserBaseSchema.methods.comparePassword = async function (candidatePassword) {
   try {
+    const user = await UserBase.findOne({ username: this.username }).select(
+      "+password"
+    );
     const isMatch = await hashUtils.compareTextWithHash(
       candidatePassword,
-      this.password
+      user.password
     );
     return isMatch;
   } catch (err) {
