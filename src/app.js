@@ -93,3 +93,6 @@ server.listen(port, () => {
     App is listening to https://localhost:${port}
   `);
 });
+
+
+export default app;

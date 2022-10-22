@@ -1,6 +1,8 @@
 // file deepcode ignore NoRateLimitingForExpensiveWebOperation
 import AuthService from "../service/auth.service.js";
+import UserBaseService from "../service/userbase.service.js";
 import passport from "passport";
+
 const AuthController = {
   loginGet: async (req, res) => {
     res.render("auth/login.twig", { title: "Login Page" });
@@ -15,13 +17,13 @@ const AuthController = {
   registrationPost: async (req, res, next) => {
     const newUser = req.body;
     try {
-      await AuthService.registration(newUser);
+      let userFromDB = await AuthService.registration(newUser);
       passport.authenticate("local", {
         session: true,
         failureRedirect: "/auth/login",
-        successRedirect: "/user",
+        successRedirect: `/${userFromDB.role}`,
         failureMessage: true,
-      })(req, res, next)
+      })(req, res, next);
     } catch (err) {
       res.render("auth/registration.twig", {
         title: "Registration Page",
@@ -31,12 +33,14 @@ const AuthController = {
   },
 
   loginPost: async (req, res) => {
-    res.redirect("/");
+    let userIdInSession = req.session.passport.user;
+    let userInSessionFromDB = await UserBaseService.get(userIdInSession);
+    res.redirect(`/${userInSessionFromDB.role}`);
   },
 
   logout: async (req, res) => {
-    req.logout(() => {
-      res.redirect("/auth/login");
+    await req.logout(() => {
+      return res.redirect("/auth/login")
     });
   },
 };
