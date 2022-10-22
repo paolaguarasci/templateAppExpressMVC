@@ -5,7 +5,7 @@
   "scripts": {
     "start:dev": "nodemon -r dotenv/config src/app.js",
     "start:prod": "node -r dotenv/config src/app.js",
-    "test": "jest",
+    "test": "npx jest test",
     "lint": "npx eslint --fix --ext .js src/"
   },
   "dependencies": {
