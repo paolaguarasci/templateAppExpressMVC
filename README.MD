@@ -2,12 +2,22 @@
   <img width="200" src="loghi.png" alt="MVC Express" align="center">
 </p>
 
-<h1 align="center" style="margin-top: 10px;">MVC Express with template engine</h1>
+<h1 align="center" style="margin-top: 10px;">
+  MVC Express with template engine
+</h1>
 
-<p align="center">Another awesome Express template</p>
+<p align="center">
+  Another awesome Express template
+</p>
 
 <div align="center">
-<a href="https://github.com/paolaguarasci/templateAppExpressMVC/actions/workflows/eslint.yml"><img width="100" src="https://github.com/paolaguarasci/templateAppExpressMVC/actions/workflows/eslint.yml/badge.svg?branch=dev" alt="MVC Express" align="center"></a>
+  <a href="https://snyk.io/test/github/paolaguarasci/templateAppExpressMVC">
+    <img src="https://snyk.io/test/github/paolaguarasci/templateAppExpressMVC/badge.svg" alt="Snyk vulnerability check">
+  </a>
+
+  <a href="https://github.com/paolaguarasci/templateAppExpressMVC/actions/workflows/eslint.yml">
+    <img src="https://github.com/paolaguarasci/templateAppExpressMVC/actions/workflows/eslint.yml/badge.svg?branch=dev" alt="ESLint action">
+  </a>
 </div>
 
 ### Features
