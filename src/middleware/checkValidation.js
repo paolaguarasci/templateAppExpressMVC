@@ -5,5 +5,6 @@ export default function checkValidation(req, res, next) {
     next();
   } catch (err) {
     console.log(err.mapped());
+    res.sendStatus(400)
   }
 }
