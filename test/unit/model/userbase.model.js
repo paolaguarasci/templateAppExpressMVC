@@ -1,6 +1,6 @@
 // deepcode ignore NoHardcodedPasswords/test: <please specify a reason of ignoring this>
 import UserBase from "../../../src/model/UserBase.js";
-import db from "./db.js";
+import db from "../../db.js";
 import mongoose from "mongoose";
 
 const userData = {
@@ -16,6 +16,21 @@ const userDataWithWrongUsername = {
 const userDataWithWrongPassword = {
   username: "TekLoonXXX",
   password: "password",
+};
+
+const userDataWithShortPassword = {
+  username: "TekLoonXXX",
+  password: "pass  ",
+};
+
+const userDataWithLongPassword = {
+  username: "TekLoonXXX",
+  password: "  passwordasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasd",
+};
+
+const userDataWithStrangePassword = {
+  username: "TekLoonXXX",
+  password: "',$or:[{},{'a':'a",
 };
 
 describe("UserBase", function () {
@@ -86,6 +101,50 @@ describe("UserBase", function () {
         await userWithoutRequiredField.save();
     } catch (error) {
       err = error;
+    }
+    expect(err).toBeInstanceOf(mongoose.Error.ValidatorError);
+    expect(err.properties.message).toBe("Validator failed for password");
+  });
+
+  it("create user with short password should failed", async () => {
+    const userWithoutRequiredField = new UserBase(userDataWithShortPassword);
+    let err;
+    try {
+      const savedUserWithoutRequiredField =
+        await userWithoutRequiredField.save();
+    } catch (error) {
+      err = error;
+    }
+    expect(err).toBeInstanceOf(mongoose.Error.ValidatorError);
+    expect(err.properties.message).toBe(
+      "Password must be length between 8 and 32 charters"
+    );
+  });
+
+  it("create user with long password should failed", async () => {
+    const userWithoutRequiredField = new UserBase(userDataWithLongPassword);
+    let err;
+    try {
+      const savedUserWithoutRequiredField =
+        await userWithoutRequiredField.save();
+    } catch (error) {
+      err = error;
+    }
+    expect(err).toBeInstanceOf(mongoose.Error.ValidatorError);
+    expect(err.properties.message).toBe(
+      "Password must be length between 8 and 32 charters"
+    );
+  });
+
+  it("create user with strange password should failed", async () => {
+    const userWithoutRequiredField = new UserBase(userDataWithStrangePassword);
+    let err;
+    try {
+      const savedUserWithoutRequiredField =
+        await userWithoutRequiredField.save();
+    } catch (error) {
+      err = error;
+      console.log("err ", err);
     }
     expect(err).toBeInstanceOf(mongoose.Error.ValidatorError);
     expect(err.properties.message).toBe("Validator failed for password");

@@ -35,7 +35,7 @@ UserBaseSchema.pre("save", async function (next) {
 UserBaseSchema.methods.validatePassword = async function (newUser) {
   let candidatePassword = newUser.password;
   if (candidatePassword.length < 8 || candidatePassword.length > 32) {
-    throw new Error("Password must be length between 8 and 32 charters");
+    throw new Error.ValidatorError({ message: "Password must be length between 8 and 32 charters" });
   }
   candidatePassword = candidatePassword.trim();
   /**
