@@ -1,14 +1,14 @@
-import AuthController from "../../src/controller/AuthController.js";
-import AuthService from "../../src/service/auth.service.js";
+import AuthController from "../../../src/controller/AuthController.js";
+import AuthService from "../../../src/service/auth.service.js";
 import passport from "passport";
 
 const adminUsers = [{ id: 1, username: "john", role: "admin" }];
 
-jest.mock("../../src/service/auth.service.js", () => ({
+jest.mock("../../../src/service/auth.service.js", () => ({
   registration: jest.fn().mockResolvedValue(adminUsers),
 }));
 
-jest.mock("../../src/service/userbase.service.js", () => ({
+jest.mock("../../../src/service/userbase.service.js", () => ({
   get: jest.fn().mockResolvedValue(adminUsers[0]),
 }));
 

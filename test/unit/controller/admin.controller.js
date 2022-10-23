@@ -1,19 +1,19 @@
-import AdminController from "../../src/controller/AdminController.js";
-import AdminService from "../../src/service/admin.service.js";
-import EditorService from "../../src/service/editor.service.js";
-import UserService from "../../src/service/user.service.js";
+import AdminController from "../../../src/controller/AdminController.js";
+import AdminService from "../../../src/service/admin.service.js";
+import EditorService from "../../../src/service/editor.service.js";
+import UserService from "../../../src/service/user.service.js";
 
 const adminUsers = [{ id: 1, name: "john" }];
 const editorUsers = [{ id: 2, name: "mike" }];
 const userUsers = [{ id: 3, name: "ted" }];
 
-jest.mock("../../src/service/admin.service.js", () => ({
+jest.mock("../../../src/service/admin.service.js", () => ({
   all: jest.fn().mockResolvedValue(adminUsers),
 }));
-jest.mock("../../src/service/editor.service.js", () => ({
+jest.mock("../../../src/service/editor.service.js", () => ({
   all: jest.fn().mockResolvedValue(editorUsers),
 }));
-jest.mock("../../src/service/user.service.js", () => ({
+jest.mock("../../../src/service/user.service.js", () => ({
   all: jest.fn().mockResolvedValue(userUsers),
 }));
 

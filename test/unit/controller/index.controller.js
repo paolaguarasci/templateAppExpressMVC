@@ -1,4 +1,4 @@
-import IndexController from "../../src/controller/IndexController.js";
+import IndexController from "../../../src/controller/IndexController.js";
 
 describe("Test Index Controller", function () {
   test("responds to /", () => {

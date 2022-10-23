@@ -1,4 +1,4 @@
-import EditorService from "../../src/service/editor.service.js";
+import EditorService from "../../../src/service/editor.service.js";
 
 const editorUsers = [
   { id: 1, username: "john" },
@@ -12,7 +12,7 @@ const newEditors = [
   { id: 3, username: "nicola" },
 ];
 
-jest.mock("../../src/model/Editor.js", () => ({
+jest.mock("../../../src/model/Editor.js", () => ({
   findById: jest
     .fn()
     .mockImplementation((id) => editorUsers.find((editor) => editor.id === id)),

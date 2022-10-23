@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import {hashUtils} from "../../src/utils/hash.js";
+import {hashUtils} from "../../../src/utils/hash.js";
 
 const exampleHash = 1;
 const exampleSalt = 1;

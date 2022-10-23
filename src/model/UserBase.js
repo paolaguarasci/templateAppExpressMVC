@@ -1,3 +1,4 @@
+import { Error } from "mongoose";
 import { hashUtils } from "../utils/hash.js";
 import mongoose from "mongoose";
 const UserBaseSchema = new mongoose.Schema(
@@ -46,7 +47,7 @@ UserBaseSchema.methods.validatePassword = async function (newUser) {
    */
   const regExp = /^(?=.*\d)(?=(.*\W){2})(?=.*[a-zA-Z])(?!.*\s).{8,32}$/;
   if (!regExp.test(candidatePassword)) {
-    throw new Error("Password format is incorrect!");
+    throw new Error.ValidatorError({ message: "Validator failed for password" });
   }
 };
 
