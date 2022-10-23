@@ -10,7 +10,6 @@ export default (passport) => {
           if (!user) return done(null, false);
           return done(null, user);
         } catch (e) {
-          console.log("User not found")
           done(null, false);
         }
       }),

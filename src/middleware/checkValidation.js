@@ -4,7 +4,6 @@ export default function checkValidation(req, res, next) {
     validationResult(req).throw();
     next();
   } catch (err) {
-    console.log(err.mapped());
     res.sendStatus(400)
   }
 }

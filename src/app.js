@@ -1,3 +1,5 @@
+import * as dotenv from 'dotenv'
+
 import { createErrorMiddleware, errorToView } from "./middleware/error.js";
 import { globalForView, normalizePort } from "./config/express.js";
 
@@ -7,7 +9,7 @@ import express from "express";
 import { fileURLToPath } from "url";
 import fs from "fs";
 import helmet from "helmet";
-import hpp from 'hpp'
+import hpp from "hpp";
 import https from "https";
 import indexRouter from "./routes/index.js";
 import logger from "morgan";
@@ -18,6 +20,10 @@ import path from "path";
 import { ratelimit } from "./middleware/rateLimit.js";
 import session from "express-session";
 
+dotenv.config()
+
+
+
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -26,17 +32,17 @@ const certPath = path.join(__dirname, "..", "cert");
 mongoose
   .connect(process.env.MONGO_CONNECTION_STRING, { maxPoolSize: 10 })
   .catch((error) => {
-    console.log("Mongoose error \n", error);
+    throw Error(error)
   });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
-console.log("")
+
 app.disable("x-powered-by");
 app.use(ratelimit);
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "twig");
 app.use(express.urlencoded({ extended: false }));
-app.use(hpp())
+app.use(hpp());
 app.use(express.json());
 app.use(logger("dev"));
 app.use(cookieParser());
@@ -93,6 +99,5 @@ server.listen(port, () => {
     App is listening to https://localhost:${port}
   `);
 });
-
 
 export default app;

@@ -26,9 +26,7 @@ UserBaseSchema.pre("save", async function (next) {
   if (original) {
     throw new Error("Username alredy present");
   }
-  console.log("Valido la password");
   await this.validatePassword(newDoc);
-  console.log("Password valida");
   newDoc.password = await hashUtils.getHash(newDoc.password);
   next();
 });
@@ -38,7 +36,6 @@ UserBaseSchema.methods.validatePassword = async function (newUser) {
   if (candidatePassword.length < 8 || candidatePassword.length > 32) {
     throw new Error("Password must be length between 8 and 32 charters");
   }
-  console.log("candidatePassword ", candidatePassword);
   candidatePassword = candidatePassword.trim();
   /**
    * (?=.*\d)         should contain at least 1 digit
@@ -49,7 +46,6 @@ UserBaseSchema.methods.validatePassword = async function (newUser) {
    */
   const regExp = /^(?=.*\d)(?=(.*\W){2})(?=.*[a-zA-Z])(?!.*\s).{8,32}$/;
   if (!regExp.test(candidatePassword)) {
-    console.log("wrong password");
     throw new Error("Password format is incorrect!");
   }
 };
