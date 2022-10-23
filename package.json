@@ -6,7 +6,7 @@
     "start:dev": "node_modules/.bin/nodemon -r dotenv/config src/app.js",
     "start:prod": "node -r dotenv/config src/app.js",
     "test:unit": "node_modules/.bin/jest test/unit",
-    "test:integration": "NODE_OPTIONS=--experimental-vm-modules node_modules/.bin/jest --detectOpenHandles --forceExit test/integration",
+    "test:integration": "NODE_OPTIONS=--experimental-vm-modules node_modules/.bin/jest --detectOpenHandles --forceExit test/integration --coverageCollectFrom=src/routes",
     "lint": "node_modules/.bin/eslint --fix --ext .js src/ test/"
   },
   "dependencies": {

@@ -1,5 +1,5 @@
 // deepcode ignore NoHardcodedPasswords/test: <please specify a reason of ignoring this>
-import UserBase from "../../../src/model/UserBase.js";
+import Admin from "../../../src/model/Admin.js";
 import db from "../../db.js";
 import mongoose from "mongoose";
 
@@ -33,7 +33,7 @@ const userDataWithStrangePassword = {
   password: "',$or:[{},{'a':'a",
 };
 
-describe("UserBase", function () {
+describe("Admin", function () {
   beforeEach(() => {});
   afterEach(() => {});
 
@@ -50,15 +50,23 @@ describe("UserBase", function () {
   });
 
   test("create & save user successfully", async () => {
-    const validUser = new UserBase(userData);
+    const validUser = new Admin(userData);
     const savedUser = await validUser.save();
     expect(savedUser._id).toBeDefined();
     expect(savedUser.username).toBe(userData.username);
     expect(savedUser.password).toBeDefined();
   });
 
+  test("create user should be have role==='admin'", async () => {
+    const validUser = new Admin(userData);
+    const savedUser = await validUser.save();
+    expect(savedUser._id).toBeDefined();
+    expect(savedUser.username).toBe(userData.username);
+    expect(savedUser.role).toBe("admin");
+  });
+
   it("insert user successfully, but the field not defined in schema should be undefined", async () => {
-    const userWithInvalidField = new UserBase({
+    const userWithInvalidField = new Admin({
       ...userData,
       nickname: "Handsome TekLoon",
     });
@@ -68,7 +76,7 @@ describe("UserBase", function () {
   });
 
   it("create user with wrong username should failed", async () => {
-    const userWithoutRequiredField = new UserBase(userDataWithWrongUsername);
+    const userWithoutRequiredField = new Admin(userDataWithWrongUsername);
     let err;
     try {
       const savedUserWithoutRequiredField =
@@ -81,8 +89,8 @@ describe("UserBase", function () {
   });
 
   it("create user with existent username should failed", async () => {
-    const user1 = new UserBase(userData);
-    const user2 = new UserBase(userData);
+    const user1 = new Admin(userData);
+    const user2 = new Admin(userData);
     let err;
     try {
       const savedUser1 = await user1.save();
@@ -94,7 +102,7 @@ describe("UserBase", function () {
   });
 
   it("create user with wrong password should failed", async () => {
-    const userWithoutRequiredField = new UserBase(userDataWithWrongPassword);
+    const userWithoutRequiredField = new Admin(userDataWithWrongPassword);
     let err;
     try {
       const savedUserWithoutRequiredField =
@@ -107,7 +115,7 @@ describe("UserBase", function () {
   });
 
   it("create user with short password should failed", async () => {
-    const userWithoutRequiredField = new UserBase(userDataWithShortPassword);
+    const userWithoutRequiredField = new Admin(userDataWithShortPassword);
     let err;
     try {
       const savedUserWithoutRequiredField =
@@ -122,7 +130,7 @@ describe("UserBase", function () {
   });
 
   it("create user with long password should failed", async () => {
-    const userWithoutRequiredField = new UserBase(userDataWithLongPassword);
+    const userWithoutRequiredField = new Admin(userDataWithLongPassword);
     let err;
     try {
       const savedUserWithoutRequiredField =
@@ -137,7 +145,7 @@ describe("UserBase", function () {
   });
 
   it("create user with strange password should failed", async () => {
-    const userWithoutRequiredField = new UserBase(userDataWithStrangePassword);
+    const userWithoutRequiredField = new Admin(userDataWithStrangePassword);
     let err;
     try {
       const savedUserWithoutRequiredField =
@@ -151,7 +159,7 @@ describe("UserBase", function () {
   });
 
   it("create user without required field should failed", async () => {
-    const userWithoutRequiredField = new UserBase({ name: "TekLoon" });
+    const userWithoutRequiredField = new Admin({ name: "TekLoon" });
     let err;
     try {
       const savedUserWithoutRequiredField =
@@ -165,14 +173,14 @@ describe("UserBase", function () {
   });
 
   // it("compare password should return false if candidate password is wrong", async () => {
-  //   const user = new UserBase(userData);
+  //   const user = new Admin(userData);
 
   //   let err;
   //   try {
   //     let isRightPass = user.comparePassword(userData.password);
   //   } catch (error) {
   //     err = error;
-  //    console.log("errorreeeee \n\n\n", err);
+  //     console.log("errorreeeee \n\n\n", err);
   //   }
   //   expect(err).toBeInstanceOf(mongoose.Error.ValidatorError);
   //   expect(err.properties.message).toBe(

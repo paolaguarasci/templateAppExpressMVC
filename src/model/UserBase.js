@@ -35,7 +35,9 @@ UserBaseSchema.pre("save", async function (next) {
 UserBaseSchema.methods.validatePassword = async function (newUser) {
   let candidatePassword = newUser.password;
   if (candidatePassword.length < 8 || candidatePassword.length > 32) {
-    throw new Error.ValidatorError({ message: "Password must be length between 8 and 32 charters" });
+    throw new Error.ValidatorError({
+      message: "Password must be length between 8 and 32 charters",
+    });
   }
   candidatePassword = candidatePassword.trim();
   /**
@@ -47,7 +49,9 @@ UserBaseSchema.methods.validatePassword = async function (newUser) {
    */
   const regExp = /^(?=.*\d)(?=(.*\W){2})(?=.*[a-zA-Z])(?!.*\s).{8,32}$/;
   if (!regExp.test(candidatePassword)) {
-    throw new Error.ValidatorError({ message: "Validator failed for password" });
+    throw new Error.ValidatorError({
+      message: "Validator failed for password",
+    });
   }
 };
 
@@ -62,7 +66,7 @@ UserBaseSchema.methods.comparePassword = async function (candidatePassword) {
     );
     return isMatch;
   } catch (err) {
-    throw Error("Password dont match");
+    throw new Error.ValidatorError({ message: "Wrong password" });
   }
 };
 
