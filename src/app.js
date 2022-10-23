@@ -100,4 +100,4 @@ server.listen(port, () => {
   `);
 });
 
-export default app;
+export default server;
