@@ -157,18 +157,16 @@ describe("UserBase", function () {
     expect(err.errors.password).toBeDefined();
   });
 
-  // it("compare password should return false if candidate password is wrong", async () => {
-  //   const user = new UserBase(userData);
+  it("compare password should return false if candidate password is wrong", async () => {
+    const user = new UserBase(userData);
 
-  //   let err;
-  //   try {
-  //     let isRightPass = user.comparePassword(userData.password);
-  //   } catch (error) {
-  //     err = error;
-  //   }
-  //   expect(err).toBeInstanceOf(mongoose.Error.ValidatorError);
-  //   expect(err.properties.message).toBe(
-  //     "Password must be length between 8 and 32 charters"
-  //   );
-  // });
+    let err;
+    try {
+      await user.comparePassword(userData.password);
+    } catch (error) {
+      err = error;
+    }
+    expect(err).toBeInstanceOf(mongoose.Error.ValidatorError);
+    expect(err.properties.message).toBe("Wrong password");
+  });
 });

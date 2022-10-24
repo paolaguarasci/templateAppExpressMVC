@@ -60,11 +60,10 @@ UserBaseSchema.methods.comparePassword = async function (candidatePassword) {
     const user = await UserBase.findOne({ username: this.username }).select(
       "+password"
     );
-    const isMatch = await hashUtils.compareTextWithHash(
+    return await hashUtils.compareTextWithHash(
       candidatePassword,
       user.password
     );
-    return isMatch;
   } catch (err) {
     throw new Error.ValidatorError({ message: "Wrong password" });
   }
