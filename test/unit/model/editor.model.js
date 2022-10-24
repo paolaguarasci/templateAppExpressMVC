@@ -79,8 +79,7 @@ describe("Editor", function () {
     const userWithoutRequiredField = new Editor(userDataWithWrongUsername);
     let err;
     try {
-      const savedUserWithoutRequiredField =
-        await userWithoutRequiredField.save();
+      await userWithoutRequiredField.save();
     } catch (error) {
       err = error;
     }
@@ -93,8 +92,8 @@ describe("Editor", function () {
     const user2 = new Editor(userData);
     let err;
     try {
-      const savedUser1 = await user1.save();
-      const savedUser2 = await user2.save();
+      await user1.save();
+      await user2.save();
     } catch (error) {
       err = error;
     }
@@ -105,8 +104,7 @@ describe("Editor", function () {
     const userWithoutRequiredField = new Editor(userDataWithWrongPassword);
     let err;
     try {
-      const savedUserWithoutRequiredField =
-        await userWithoutRequiredField.save();
+      await userWithoutRequiredField.save();
     } catch (error) {
       err = error;
     }
@@ -118,8 +116,7 @@ describe("Editor", function () {
     const userWithoutRequiredField = new Editor(userDataWithShortPassword);
     let err;
     try {
-      const savedUserWithoutRequiredField =
-        await userWithoutRequiredField.save();
+      await userWithoutRequiredField.save();
     } catch (error) {
       err = error;
     }
@@ -133,8 +130,7 @@ describe("Editor", function () {
     const userWithoutRequiredField = new Editor(userDataWithLongPassword);
     let err;
     try {
-      const savedUserWithoutRequiredField =
-        await userWithoutRequiredField.save();
+      await userWithoutRequiredField.save();
     } catch (error) {
       err = error;
     }
@@ -148,11 +144,9 @@ describe("Editor", function () {
     const userWithoutRequiredField = new Editor(userDataWithStrangePassword);
     let err;
     try {
-      const savedUserWithoutRequiredField =
-        await userWithoutRequiredField.save();
+      await userWithoutRequiredField.save();
     } catch (error) {
       err = error;
-      console.log("err ", err);
     }
     expect(err).toBeInstanceOf(mongoose.Error.ValidatorError);
     expect(err.properties.message).toBe("Validator failed for password");
@@ -162,8 +156,7 @@ describe("Editor", function () {
     const userWithoutRequiredField = new Editor({ name: "TekLoon" });
     let err;
     try {
-      const savedUserWithoutRequiredField =
-        await userWithoutRequiredField.save();
+      await userWithoutRequiredField.save();
     } catch (error) {
       err = error;
     }
@@ -180,7 +173,6 @@ describe("Editor", function () {
   //     let isRightPass = user.comparePassword(userData.password);
   //   } catch (error) {
   //     err = error;
-  //     console.log("errorreeeee \n\n\n", err);
   //   }
   //   expect(err).toBeInstanceOf(mongoose.Error.ValidatorError);
   //   expect(err.properties.message).toBe(
